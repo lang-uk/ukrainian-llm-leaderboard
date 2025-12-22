@@ -11,27 +11,49 @@ from huggingface_hub import snapshot_download
 from pathlib import Path
 
 # Define the key benchmarks to track from the JSON results file
+# Define the key benchmarks to track from the JSON results file
 MAIN_BENCHMARKS = {
-    "belebele_ukr_Cyrl": {"metric": "acc", "name": "Belebele Ukrainian"},
-    "global_mmlu_full_uk": {"metric": "acc", "name": "MMLU Ukrainian"},
-    "flores_uk": {"metric": "bleu", "name": "FLORES Ukrainian"},
-    "long_flores_uk": {"metric": "bleu", "name": "Long FLORES Ukrainian"},
-    "squad_uk": {"metric": "f1", "name": "SQuAD Ukrainian"},
-    "xlsum_uk": {"metric": "bleu", "name": "XLSum Ukrainian"},
-    "triviaqa_uk": {"metric": "exact_match", "name": "TriviaQA Ukrainian"},
-    "arc_challenge_uk": {"metric": "exact_match", "name": "ARC Challenge Ukrainian"},
-    "arc_easy_uk": {"metric": "acc", "name": "ARC Easy Ukrainian"},
-    "winogrande_uk": {"metric": "acc", "name": "Winogrande Ukrainian"},
-    "gsm8k_uk": {"metric": "exact_match", "name": "GSM8K Ukrainian"},
-    "ifeval_uk": {"metric": "prompt_level_strict_acc", "name": "IFEval Ukrainian"},
-    "wmt_en_uk": {"metric": "bleu", "name": "WMT EN→UK"},
-    "zno_uk_geography": {"metric": "exact", "name": "ZNO Geography"},
-    "zno_uk_history": {"metric": "exact", "name": "ZNO History"},
+    "belebele_ukr_Cyrl": {
+        "metric": "acc",
+        "name": "Belebele Ukrainian",
+        "scale": [0, 1],
+    },
+    "global_mmlu_full_uk": {"metric": "acc", "name": "MMLU Ukrainian", "scale": [0, 1]},
+    "flores_uk": {"metric": "bleu", "name": "FLORES Ukrainian", "scale": [0, 40]},
+    "long_flores_uk": {
+        "metric": "bleu",
+        "name": "Long FLORES Ukrainian",
+        "scale": [0, 40],
+    },
+    "squad_uk": {"metric": "f1", "name": "SQuAD Ukrainian", "scale": [0, 1]},
+    "xlsum_uk": {"metric": "bleu", "name": "XLSum Ukrainian", "scale": [0, 30]},
+    "triviaqa_uk": {
+        "metric": "exact_match",
+        "name": "TriviaQA Ukrainian",
+        "scale": [0, 1],
+    },
+    "arc_challenge_uk": {
+        "metric": "exact_match",
+        "name": "ARC Challenge Ukrainian",
+        "scale": [0, 1],
+    },
+    "arc_easy_uk": {"metric": "acc", "name": "ARC Easy Ukrainian", "scale": [0, 1]},
+    "winogrande_uk": {"metric": "acc", "name": "Winogrande Ukrainian", "scale": [0, 1]},
+    "gsm8k_uk": {"metric": "exact_match", "name": "GSM8K Ukrainian", "scale": [0, 1]},
+    "ifeval_uk": {
+        "metric": "prompt_level_strict_acc",
+        "name": "IFEval Ukrainian",
+        "scale": [0, 1],
+    },
+    "wmt_en_uk": {"metric": "bleu", "name": "WMT EN→UK", "scale": [0, 40]},
+    "zno_uk_geography": {"metric": "exact", "name": "ZNO Geography", "scale": [0, 1]},
+    "zno_uk_history": {"metric": "exact", "name": "ZNO History", "scale": [0, 1]},
     "zno_uk_language_and_literature": {
         "metric": "exact",
         "name": "ZNO Language & Literature",
+        "scale": [0, 1],
     },
-    "zno_uk_math": {"metric": "exact", "name": "ZNO Math"},
+    "zno_uk_math": {"metric": "exact", "name": "ZNO Math", "scale": [0, 1]},
 }
 
 # MMLU - Only use aggregate score, no subcategories
@@ -39,14 +61,22 @@ MMLU_BENCHMARKS = {}
 
 # FLORES Language Pair benchmarks - ONLY English-Ukrainian pairs
 FLORES_BENCHMARKS = {
-    "flores_en-uk": {"metric": "bleu", "name": "FLORES EN→UK"},
-    "flores_uk-en": {"metric": "bleu", "name": "FLORES UK→EN"},
+    "flores_en-uk": {"metric": "bleu", "name": "FLORES EN→UK", "scale": [0, 40]},
+    "flores_uk-en": {"metric": "bleu", "name": "FLORES UK→EN", "scale": [0, 40]},
 }
 
 # Long FLORES Language Pair benchmarks - ONLY English-Ukrainian pairs
 LONG_FLORES_BENCHMARKS = {
-    "long_flores_en-uk": {"metric": "bleu", "name": "Long FLORES EN→UK"},
-    "long_flores_uk-en": {"metric": "bleu", "name": "Long FLORES UK→EN"},
+    "long_flores_en-uk": {
+        "metric": "bleu",
+        "name": "Long FLORES EN→UK",
+        "scale": [0, 40],
+    },
+    "long_flores_uk-en": {
+        "metric": "bleu",
+        "name": "Long FLORES UK→EN",
+        "scale": [0, 40],
+    },
 }
 
 # Combine all benchmarks for detailed view
@@ -295,32 +325,6 @@ def create_relative_scores(df: pd.DataFrame) -> pd.DataFrame:
     return result_df
 
 
-def create_bar_chart(df: pd.DataFrame, metric: str) -> plt.Figure:
-    """Create a bar chart for a specific metric."""
-    if metric not in df.columns or metric == "Model":
-        return None
-
-    fig, ax = plt.subplots(figsize=(10, max(6, len(df) * 0.3)))
-
-    # Sort by the metric
-    plot_df = df.sort_values(metric, ascending=True)
-
-    # Create horizontal bar chart
-    bars = ax.barh(plot_df["Model"], plot_df[metric])
-
-    # Color bars with a gradient
-    colors = plt.cm.viridis(np.linspace(0.3, 0.9, len(plot_df)))
-    for bar, color in zip(bars, colors):
-        bar.set_color(color)
-
-    ax.set_xlabel(metric)
-    ax.set_title(f"Model Performance on {metric}")
-    ax.grid(axis="x", alpha=0.3)
-
-    plt.tight_layout()
-    return fig
-
-
 def create_radar_chart(df: pd.DataFrame, selected_models: List[str]) -> plt.Figure:
     """Create a radar chart comparing multiple models."""
     if not selected_models or len(selected_models) == 0:
@@ -345,9 +349,36 @@ def create_radar_chart(df: pd.DataFrame, selected_models: List[str]) -> plt.Figu
     # Initialize the plot
     fig, ax = plt.subplots(figsize=(10, 10), subplot_kw=dict(projection="polar"))
 
+    # Get scales for normalization
+    scales = {}
+    for col in metric_columns:
+        # Find the corresponding benchmark configuration
+        benchmark_key = None
+        for bench_dict in [MAIN_BENCHMARKS, FLORES_BENCHMARKS, LONG_FLORES_BENCHMARKS]:
+            for key, config in bench_dict.items():
+                if config["name"] == col:
+                    benchmark_key = key
+                    break
+            if benchmark_key:
+                break
+
+        if benchmark_key and benchmark_key in ALL_BENCHMARKS:
+            scales[col] = ALL_BENCHMARKS[benchmark_key]["scale"]
+        else:
+            # Fallback to data-based scale
+            scales[col] = [0, df[col].max() * 1.1]
+
+    # Normalize values to 0-100 scale for radar chart
+    normalized_df = plot_df.copy()
+    for col in metric_columns:
+        min_val, max_val = scales[col]
+        normalized_df[col] = (
+            (plot_df[col] - min_val) / (max_val - min_val) * 100
+        ).clip(0, 100)
+
     # Plot each model
     for idx, model in enumerate(selected_models):
-        model_data = plot_df[plot_df["Model"] == model]
+        model_data = normalized_df[normalized_df["Model"] == model]
         if len(model_data) == 0:
             continue
 
@@ -357,16 +388,64 @@ def create_radar_chart(df: pd.DataFrame, selected_models: List[str]) -> plt.Figu
         ax.plot(angles, values, "o-", linewidth=2, label=model)
         ax.fill(angles, values, alpha=0.15)
 
+    # Set scale to 0-100
+    ax.set_ylim(0, 100)
+
     # Fix axis to go in the right order
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(metric_columns, size=8)
 
+    # Add concentric circles for reference
+    ax.set_yticks([20, 40, 60, 80, 100])
+    ax.set_yticklabels(["20%", "40%", "60%", "80%", "100%"], size=6)
+    ax.grid(True)
+
     # Add legend
     ax.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1))
 
-    plt.title("Model Comparison", size=14, y=1.08)
+    plt.title("Model Comparison (Normalized to Scale)", size=14, y=1.08)
     plt.tight_layout()
 
+    return fig
+
+
+def create_bar_chart(df: pd.DataFrame, metric: str) -> plt.Figure:
+    """Create a bar chart for a specific metric."""
+    if metric not in df.columns or metric == "Model":
+        return None
+
+    fig, ax = plt.subplots(figsize=(10, max(6, len(df) * 0.3)))
+
+    # Sort by the metric
+    plot_df = df.sort_values(metric, ascending=True)
+
+    # Create horizontal bar chart
+    bars = ax.barh(plot_df["Model"], plot_df[metric])
+
+    # Color bars with a gradient
+    colors = plt.cm.viridis(np.linspace(0.3, 0.9, len(plot_df)))
+    for bar, color in zip(bars, colors):
+        bar.set_color(color)
+
+    # Set x-axis scale based on benchmark configuration
+    benchmark_key = None
+    for bench_dict in [MAIN_BENCHMARKS, FLORES_BENCHMARKS, LONG_FLORES_BENCHMARKS]:
+        for key, config in bench_dict.items():
+            if config["name"] == metric:
+                benchmark_key = key
+                break
+        if benchmark_key:
+            break
+
+    if benchmark_key and benchmark_key in ALL_BENCHMARKS:
+        min_val, max_val = ALL_BENCHMARKS[benchmark_key]["scale"]
+        ax.set_xlim(min_val, max_val)
+
+    ax.set_xlabel(metric)
+    ax.set_title(f"Model Performance on {metric}")
+    ax.grid(axis="x", alpha=0.3)
+
+    plt.tight_layout()
     return fig
 
 
