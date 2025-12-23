@@ -1,0 +1,2 @@
+task: mmlu_uk_business_ethics
+class: !function mmlu_tasks.MMLUBusinessEthicsTask

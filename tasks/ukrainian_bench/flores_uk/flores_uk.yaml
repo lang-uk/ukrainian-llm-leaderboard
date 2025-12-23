@@ -1,0 +1,27 @@
+group: flores_uk
+task:
+  - flores_crh-uk
+  - flores_cs-uk
+  - flores_de-uk
+  - flores_en-uk
+  - flores_hu-uk
+  - flores_pl-uk
+  - flores_ro-uk
+  - flores_ru-uk
+  - flores_sk-uk
+  - flores_uk-crh
+  - flores_uk-cs
+  - flores_uk-de
+  - flores_uk-en
+  - flores_uk-hu
+  - flores_uk-pl
+  - flores_uk-ro
+  - flores_uk-ru
+  - flores_uk-sk
+aggregate_metric_list:
+  - metric: bleu
+    aggregation: mean
+    weight_by_size: false
+metadata:
+  version: 1.0
+

@@ -1,0 +1,2 @@
+task: mmlu_uk_miscellaneous
+class: !function mmlu_tasks.MMLUMiscellaneousTask

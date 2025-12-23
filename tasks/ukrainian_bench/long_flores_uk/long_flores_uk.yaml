@@ -1,0 +1,27 @@
+group: long_flores_uk
+task:
+  - long_flores_crh-uk
+  - long_flores_cs-uk
+  - long_flores_de-uk
+  - long_flores_en-uk
+  - long_flores_hu-uk
+  - long_flores_pl-uk
+  - long_flores_ro-uk
+  - long_flores_ru-uk
+  - long_flores_sk-uk
+  - long_flores_uk-crh
+  - long_flores_uk-cs
+  - long_flores_uk-de
+  - long_flores_uk-en
+  - long_flores_uk-hu
+  - long_flores_uk-pl
+  - long_flores_uk-ro
+  - long_flores_uk-ru
+  - long_flores_uk-sk
+aggregate_metric_list:
+  - metric: bleu
+    aggregation: mean
+    weight_by_size: false
+metadata:
+  version: 1.0
+

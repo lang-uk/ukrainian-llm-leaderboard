@@ -1,0 +1,2 @@
+task: mmlu_uk_moral_scenarios
+class: !function mmlu_tasks.MMLUMoralScenariosTask

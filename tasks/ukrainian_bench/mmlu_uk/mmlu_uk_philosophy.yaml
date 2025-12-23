@@ -1,0 +1,2 @@
+task: mmlu_uk_philosophy
+class: !function mmlu_tasks.MMLUPhilosophyTask

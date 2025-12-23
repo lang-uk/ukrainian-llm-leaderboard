@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_physics
+class: !function mmlu_tasks.MMLUHighSchoolPhysicsTask

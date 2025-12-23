@@ -1,0 +1,2 @@
+task: mmlu_uk_econometrics
+class: !function mmlu_tasks.MMLUEconometricsTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_statistics
+class: !function mmlu_tasks.MMLUHighSchoolStatisticsTask

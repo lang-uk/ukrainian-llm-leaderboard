@@ -1,0 +1,2 @@
+task: mmlu_uk_global_facts
+class: !function mmlu_tasks.MMLUGlobalFactsTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_human_sexuality
+class: !function mmlu_tasks.MMLUHumanSexualityTask

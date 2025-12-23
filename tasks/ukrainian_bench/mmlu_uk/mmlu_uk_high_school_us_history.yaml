@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_us_history
+class: !function mmlu_tasks.MMLUHighSchoolUsHistoryTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_moral_disputes
+class: !function mmlu_tasks.MMLUMoralDisputesTask

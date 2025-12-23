@@ -1,0 +1,2 @@
+task: mmlu_uk_medical_genetics
+class: !function mmlu_tasks.MMLUMedicalGeneticsTask

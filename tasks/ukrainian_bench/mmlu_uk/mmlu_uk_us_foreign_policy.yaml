@@ -1,0 +1,2 @@
+task: mmlu_uk_us_foreign_policy
+class: !function mmlu_tasks.MMLUUsForeignPolicyTask

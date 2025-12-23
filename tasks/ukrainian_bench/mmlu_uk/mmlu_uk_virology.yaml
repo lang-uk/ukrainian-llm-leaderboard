@@ -1,0 +1,2 @@
+task: mmlu_uk_virology
+class: !function mmlu_tasks.MMLUVirologyTask

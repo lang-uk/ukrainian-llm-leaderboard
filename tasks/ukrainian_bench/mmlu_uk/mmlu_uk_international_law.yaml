@@ -1,0 +1,2 @@
+task: mmlu_uk_international_law
+class: !function mmlu_tasks.MMLUInternationalLawTask

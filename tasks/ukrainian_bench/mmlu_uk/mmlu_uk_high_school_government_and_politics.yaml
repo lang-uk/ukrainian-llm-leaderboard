@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_government_and_politics
+class: !function mmlu_tasks.MMLUHighSchoolGovernmentAndPoliticsTask

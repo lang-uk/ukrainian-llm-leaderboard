@@ -1,0 +1,2 @@
+task: mmlu_uk_college_medicine
+class: !function mmlu_tasks.MMLUCollegeMedicineTask

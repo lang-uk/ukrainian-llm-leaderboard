@@ -1,0 +1,2 @@
+task: mmlu_uk_public_relations
+class: !function mmlu_tasks.MMLUPublicRelationsTask

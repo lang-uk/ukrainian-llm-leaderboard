@@ -1,0 +1,2 @@
+task: zno_uk_language_and_literature
+class: !function zno_tasks.ZnoLanguageAndLiteratureTask 

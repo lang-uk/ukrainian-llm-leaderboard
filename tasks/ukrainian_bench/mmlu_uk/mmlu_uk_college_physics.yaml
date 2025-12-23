@@ -1,0 +1,2 @@
+task: mmlu_uk_college_physics
+class: !function mmlu_tasks.MMLUCollegePhysicsTask

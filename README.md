@@ -21,6 +21,7 @@ The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-result
 - [ ] Upload full benchmark traces
 - [ ] Add [MMZNO](https://aclanthology.org/2025.unlp-1.2/) scoring for visual Q&A tasks
 - [ ] Add [UAlign](https://aclanthology.org/2025.unlp-1.4/) for ethical alignment scoring
+- [ ] Fix ZNO-Eval parsing issues
 - [ ] Add tokenizer efficiency comparison
 - [ ] Add parameter count
 - [ ] Add API providers (OpenAI, Anthropic, Google)

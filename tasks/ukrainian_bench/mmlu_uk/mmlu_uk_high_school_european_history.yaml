@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_european_history
+class: !function mmlu_tasks.MMLUHighSchoolEuropeanHistoryTask

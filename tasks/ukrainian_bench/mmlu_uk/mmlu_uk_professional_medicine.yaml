@@ -1,0 +1,2 @@
+task: mmlu_uk_professional_medicine
+class: !function mmlu_tasks.MMLUProfessionalMedicineTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_nutrition
+class: !function mmlu_tasks.MMLUNutritionTask

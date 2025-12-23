@@ -1,0 +1,2 @@
+task: mmlu_uk_high_school_psychology
+class: !function mmlu_tasks.MMLUHighSchoolPsychologyTask

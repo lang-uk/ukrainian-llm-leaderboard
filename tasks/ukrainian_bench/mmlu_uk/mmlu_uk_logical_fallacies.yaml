@@ -1,0 +1,2 @@
+task: mmlu_uk_logical_fallacies
+class: !function mmlu_tasks.MMLULogicalFallaciesTask

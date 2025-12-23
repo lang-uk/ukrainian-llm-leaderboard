@@ -1,0 +1,30 @@
+group: ukrainian_bench
+task:
+  # question answering
+  # - squad_uk
+  - belebele_ukr_Cyrl
+  - global_mmlu_full_uk
+  - triviaqa_uk
+  - arc_easy_uk
+  - arc_challenge_uk
+  # summarization
+  - xlsum_uk
+  # translation
+  - flores_uk
+  - long_flores_uk
+  - wmt_en_uk
+  # zno
+  - zno_uk_geography
+  - zno_uk_history
+  - zno_uk_language_and_literature
+  # math
+  - zno_uk_math
+  - gsm8k_uk
+  # language understanding
+  - winogrande_uk
+  # - hellaswag_uk
+  # instruction following
+  - ifeval_uk
+  # - mmlu_ukr TODO
+metadata:
+  version: 1.0

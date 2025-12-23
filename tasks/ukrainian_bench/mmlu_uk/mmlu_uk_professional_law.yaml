@@ -1,0 +1,2 @@
+task: mmlu_uk_professional_law
+class: !function mmlu_tasks.MMLUProfessionalLawTask

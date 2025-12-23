@@ -1,0 +1,2 @@
+task: mmlu_uk_management
+class: !function mmlu_tasks.MMLUManagementTask

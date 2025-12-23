@@ -1,0 +1,2 @@
+task: mmlu_uk_anatomy
+class: !function mmlu_tasks.MMLUAnatomyTask

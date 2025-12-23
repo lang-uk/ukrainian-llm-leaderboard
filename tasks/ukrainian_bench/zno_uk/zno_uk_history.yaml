@@ -1,0 +1,2 @@
+task: zno_uk_history
+class: !function zno_tasks.ZnoHistoryTask 

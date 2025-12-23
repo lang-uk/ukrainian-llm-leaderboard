@@ -1,0 +1,2 @@
+task: mmlu_uk_human_aging
+class: !function mmlu_tasks.MMLUHumanAgingTask

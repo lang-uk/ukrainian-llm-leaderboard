@@ -1,0 +1,2 @@
+task: zno_uk_math
+class: !function zno_tasks.ZnoMathTask 

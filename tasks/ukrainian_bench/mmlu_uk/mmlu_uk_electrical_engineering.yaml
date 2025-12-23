@@ -1,0 +1,2 @@
+task: mmlu_uk_electrical_engineering
+class: !function mmlu_tasks.MMLUElectricalEngineeringTask

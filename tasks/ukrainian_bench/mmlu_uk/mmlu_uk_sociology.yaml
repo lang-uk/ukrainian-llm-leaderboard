@@ -1,0 +1,2 @@
+task: mmlu_uk_sociology
+class: !function mmlu_tasks.MMLUSociologyTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_prehistory
+class: !function mmlu_tasks.MMLUPrehistoryTask

@@ -1,0 +1,2 @@
+task: mmlu_uk_marketing
+class: !function mmlu_tasks.MMLUMarketingTask

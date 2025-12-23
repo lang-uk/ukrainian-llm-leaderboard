@@ -1,0 +1,2 @@
+task: mmlu_uk_college_computer_science
+class: !function mmlu_tasks.MMLUCollegeComputerScienceTask

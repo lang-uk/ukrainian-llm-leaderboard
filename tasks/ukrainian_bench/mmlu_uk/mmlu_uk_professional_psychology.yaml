@@ -1,0 +1,2 @@
+task: mmlu_uk_professional_psychology
+class: !function mmlu_tasks.MMLUProfessionalPsychologyTask

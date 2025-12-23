@@ -1,0 +1,2 @@
+task: mmlu_uk_clinical_knowledge
+class: !function mmlu_tasks.MMLUClinicalKnowledgeTask

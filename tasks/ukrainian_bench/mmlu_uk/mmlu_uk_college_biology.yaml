@@ -1,0 +1,2 @@
+task: mmlu_uk_college_biology
+class: !function mmlu_tasks.MMLUCollegeBiologyTask

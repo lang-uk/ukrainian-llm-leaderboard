@@ -1,0 +1,2 @@
+task: mmlu_uk_abstract_algebra
+class: !function mmlu_tasks.MMLUAbstractAlgebraTask

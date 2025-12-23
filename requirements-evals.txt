@@ -1,0 +1,9 @@
+lm-eval==0.4.8
+#torch==2.6.0
+# flash_attn==2.7.4.post1
+datasets<4
+vllm==0.10.0
+# for ifeval
+langdetect
+immutabledict
+# antlr4

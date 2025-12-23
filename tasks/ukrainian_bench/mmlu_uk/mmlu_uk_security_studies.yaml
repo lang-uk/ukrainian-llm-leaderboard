@@ -1,0 +1,2 @@
+task: mmlu_uk_security_studies
+class: !function mmlu_tasks.MMLUSecurityStudiesTask
