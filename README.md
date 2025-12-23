@@ -16,7 +16,18 @@ short_description: Measuring LLM capabilities to process Ukrainian texts
 This leaderboard displays performance metrics for language models on Ukrainian language benchmarks as used during development of [Lapa LLM](https://github.com/lapa-llm/lapa-llm).
 The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-results](https://huggingface.co/datasets/lang-uk/ukrainian-llm-leaderboard-results) . Locally it's stored in `eval-results/<model_name>/results*.json`.
 
-## Roadmap:
+## 📏 What does it measure?
+The leaderboard evaluates models on a variety of benchmarks covering different NLP tasks in Ukrainian, including:
+- 🌐 **Machine Translation**: FLORES-200 (en-uk, uk-en), LongFLORES (en-uk, uk-en), WMT-22 (en-uk, uk-en)
+- 📌 **Summarization**: XLSUM (uk)
+- 🔎 **In-Context Question Answering**: Belebele (uk), SQuAD (uk)
+- 🤓 **Reasoning and Knowledge**: ZNO-Eval, Winogrande Challenge, Hellaswag, ARC Easy/Challenge, TriviaQA, MMLU
+- 🔢 **Mathematical Problem Solving**: GSM-8K
+- 👉 **Instruction Following**: IFEval
+
+> **Note:** Summarization + Q&A is a proxy for RAG capabilities in Ukrainian.
+
+## 🎯 Roadmap:
 
 - [ ] Upload full benchmark traces
 - [ ] Add [MMZNO](https://aclanthology.org/2025.unlp-1.2/) scoring for visual Q&A tasks
