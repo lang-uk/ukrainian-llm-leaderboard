@@ -437,7 +437,7 @@ def create_bar_chart(df: pd.DataFrame, metric: str) -> plt.Figure:
         if benchmark_key:
             break
 
-    if benchmark_key and benchmark_key in ALL_BENCHMARKS:
+    if False: # TODO: proper fix for scales # benchmark_key and benchmark_key in ALL_BENCHMARKS:
         min_val, max_val = ALL_BENCHMARKS[benchmark_key]["scale"]
         ax.set_xlim(min_val, max_val)
 
@@ -809,7 +809,7 @@ def create_leaderboard_app() -> gr.Blocks:
         gr.Markdown(
             readme_content
         )
-        
+
 
     return app
 
