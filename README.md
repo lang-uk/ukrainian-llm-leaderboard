@@ -64,7 +64,6 @@ pip install -r requirements-evals.txt
 Then run the evaluation script for each model checkpoint:
 
 ```bash
-
 CHECKPOINT="le-llm/lapa-v0.1.2-instruct" 
 
 VLLM_WORKER_MULTIPROC_METHOD=spawn  lm_eval --model vllm \
