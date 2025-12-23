@@ -29,6 +29,7 @@ The leaderboard evaluates models on a variety of benchmarks covering different N
 
 ## 🎯 Roadmap:
 
+- [ ] Batch-invariant Runs https://docs.vllm.ai/en/latest/features/batch_invariance/
 - [ ] Upload full benchmark traces
 - [ ] Add [MMZNO](https://aclanthology.org/2025.unlp-1.2/) scoring for visual Q&A tasks
 - [ ] Add [UAlign](https://aclanthology.org/2025.unlp-1.4/) for ethical alignment scoring
