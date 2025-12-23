@@ -43,6 +43,30 @@ The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-result
 
 Sort tables by any metric and adjust display options using the controls.
 
+### How to Run Benchmarks
+
+```bash
+pip install -r requirements-evals.txt
+```
+
+Then run the evaluation script for each model checkpoint:
+
+```bash
+
+CHECKPOINT="le-llm/lapa-v0.1.2-instruct" 
+
+VLLM_WORKER_MULTIPROC_METHOD=spawn  lm_eval --model vllm \
+       --model_args pretrained=${CHECKPOINT},data_parallel_size=2,tensor_parallel_size=2,gpu_memory_utilization=0.6,add_bos_token=True,think_end_token='</think>',max_gen_toks=32000,max_length=65536 \
+       --tasks ukrainian_bench \
+        --gen_kwargs temperature=0.7,top_p=0.95,until='<asdasdgfggvvcccx>',max_gen_toks=32000 \
+        --batch_size auto \
+        --output_path ./eval-results \
+        --log_samples \
+        --include_path ./tasks \
+        --apply_chat_template
+```
+
+
 ## Citation
 
 ```
