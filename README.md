@@ -57,6 +57,8 @@ Sort tables by any metric and adjust display options using the controls.
 
 ### ᯓ🏃🏻‍♀️‍➡️ How to Run Benchmarks
 
+Source code is available here: https://github.com/lang-uk/ukrainian-llm-leaderboard
+
 ```bash
 pip install -r requirements-evals.txt
 ```
