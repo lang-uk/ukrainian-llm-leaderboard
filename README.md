@@ -28,6 +28,7 @@ The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-result
 - [ ] Add quantized model evaluations
 - [ ] Add citation for each benchmark used
 
+If you want to leave a feedback or suggest a new feature, please open an issue or a pull request here: https://github.com/lang-uk/ukrainian-llm-leaderboard
 
 ### Important Notes
 
