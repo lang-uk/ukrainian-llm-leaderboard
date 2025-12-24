@@ -29,11 +29,13 @@ The leaderboard evaluates models on a variety of benchmarks covering different N
 
 ## 🎯 Roadmap:
 
+- [ ] Evaluate `speakleash/Bielik-11B-v3-Base-20250730`
 - [ ] Batch-invariant Runs https://docs.vllm.ai/en/latest/features/batch_invariance/
 - [ ] Upload full benchmark traces
 - [ ] Add [MMZNO](https://aclanthology.org/2025.unlp-1.2/) scoring for visual Q&A tasks
 - [ ] Add [UAlign](https://aclanthology.org/2025.unlp-1.4/) for ethical alignment scoring
 - [ ] Fix ZNO-Eval parsing issues
+- [ ] Instruct models in 3-shot setting
 - [ ] Add tokenizer efficiency comparison
 - [ ] Add parameter count
 - [ ] Add API providers (OpenAI, Anthropic, Google)
