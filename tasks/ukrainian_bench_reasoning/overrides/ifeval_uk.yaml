@@ -1,0 +1,6 @@
+include: ../../ukrainian_bench/ifeval_uk/ifeval_uk.yaml
+task: ifeval_uk
+task_alias: ifeval_uk
+doc_to_text: "Виконай інструкцію нижче буквально. Не додавай вступу чи пояснень поза вимогами.\n\n{{prompt}}"
+generation_kwargs:
+  max_gen_toks: 65536

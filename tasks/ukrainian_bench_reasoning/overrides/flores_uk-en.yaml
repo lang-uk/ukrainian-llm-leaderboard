@@ -1,0 +1,16 @@
+include: ../../ukrainian_bench/flores_uk/flores_uk-en.yaml
+task: flores_uk-en
+task_alias: flores_uk-en
+doc_to_text: "Translate this sentence into English:\n{{sentence_ukr_Cyrl}}\n\nResponse format must be <translation>English translation</translation>."
+generation_kwargs:
+  max_gen_toks: 65536
+  until:
+    - "==sdfAcxbvgg/=/=/="
+filter_list:
+  - name: extract_translation
+    filter:
+      - function: regex
+        regex_pattern: '(?s)<translation>\s*(.*?)\s*</translation>'
+        group_select: 0
+        fallback: ""
+      - function: take_first

@@ -1,0 +1,10 @@
+include: ../../ukrainian_bench/xlsum_uk/xlsum_uk.yaml
+task: xlsum_uk
+task_alias: xlsum_uk
+doc_to_text: "Текст: {{text}}\n\nНапиши один короткий підсумок українською. Лише головний факт. Без префіксів, заголовка чи пояснень."
+generation_kwargs:
+  max_gen_toks: 65536
+  until:
+    - "==sdfAcxbvgg/=/=/="
+  do_sample: false
+  temperature: 0.0

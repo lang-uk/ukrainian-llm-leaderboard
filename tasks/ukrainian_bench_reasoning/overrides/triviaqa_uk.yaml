@@ -1,0 +1,10 @@
+include: ../../ukrainian_bench/trivia_qa_uk/triviaqa_uk.yaml
+task: triviaqa_uk
+task_alias: triviaqa_uk
+doc_to_text: "Питання: {{question.rstrip('?')}}?\nДай лише точне ім'я або назву, без пояснень. Не перекладай власні назви, якщо це не потрібно.\nВідповідь:"
+generation_kwargs:
+  max_gen_toks: 8192
+  until:
+    - "==sdfAcxbvgg/=/=/="
+  do_sample: false
+  temperature: 0.0

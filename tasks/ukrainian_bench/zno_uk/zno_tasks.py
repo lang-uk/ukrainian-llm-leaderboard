@@ -1,4 +1,5 @@
 import re
+from copy import deepcopy
 from functools import partial
 from math import exp
 
@@ -34,7 +35,14 @@ class ZnoBaseTask(ConfigurableTask):
     DATASET_NAME = None
 
     def __init__(self, config=None):
-        super().__init__(config={"metadata": {"version": self.VERSION}})
+        config = deepcopy(config or {})
+        config.pop("class", None)
+        merged_config = {"metadata": {"version": self.VERSION}, **config}
+        merged_config["metadata"] = {
+            "version": self.VERSION,
+            **config.get("metadata", {}),
+        }
+        super().__init__(config=merged_config)
 
     def download(
         self,
@@ -65,6 +73,9 @@ class ZnoBaseTask(ConfigurableTask):
     
 
     def doc_to_text(self, doc):
+        if self.config.doc_to_text is not None:
+            return super().doc_to_text(doc)
+
         options = ["A", "B", "C", "D", "E"]
         options_text = "\n".join([f"{option}. {answer}" for option, answer in zip(options, doc["answers"])])
         return (
@@ -99,11 +110,16 @@ class ZnoBaseTask(ConfigurableTask):
             part of the document for `doc`.
         """
 
+        generation_kwargs = (
+            deepcopy(self.config.generation_kwargs)
+            if self.config.generation_kwargs is not None
+            else {"until": ["\n"]}
+        )
         return [
             Instance(
                 request_type="generate_until",
                 doc=doc,
-                arguments=(ctx, {"until": ["\n"]}),
+                arguments=(ctx, generation_kwargs),
                 idx=0,
                 **kwargs,
             ),
