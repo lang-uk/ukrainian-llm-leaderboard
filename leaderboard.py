@@ -10,6 +10,8 @@ from typing import Dict, List, Any, Tuple, Optional
 from huggingface_hub import snapshot_download
 from pathlib import Path
 
+from fairness import render_fairness_tab
+
 # Define the key benchmarks to track from the JSON results file
 # Define the key benchmarks to track from the JSON results file
 MAIN_BENCHMARKS = {
@@ -539,6 +541,8 @@ def create_leaderboard_app() -> gr.Blocks:
                         value=False, label="Show Relative Scores (%)"
                     )
                     refresh_btn = gr.Button("🔄 Refresh Data")
+
+        render_fairness_tab()
 
         # Detailed Benchmarks Tab
         with gr.Tab("📈 Detailed Benchmarks"):
