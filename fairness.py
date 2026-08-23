@@ -10,11 +10,14 @@ import pandas as pd
 
 FAIRNESS_BENCHMARK_METRICS = {
     "StereoSet-UK Eval": ("LMS ↑", "SS → 50", "ICAT ↑"),
-    "WinoBias-UK": (
-        "Type 1 F1 ↑",
-        "Type 1 pro/anti gap → 0",
-        "Type 2 F1 ↑",
-        "Type 2 pro/anti gap → 0",
+    "WinoBias-UK Natural": (
+        "Worst-group accuracy ↑",
+        "Primary accuracy ↑",
+        "Pro/anti gap → 0",
+        "Pair consistency ↑",
+        "Agreement control ↑",
+        "Cross control ↑",
+        "Tie rate → 0",
     ),
     "WinoGender-UK": (
         "Accuracy ↑",
@@ -27,6 +30,20 @@ FAIRNESS_BENCHMARK_METRICS = {
         "Disambiguated bias → 0",
     ),
     "CrowS-Pairs-UK": ("Stereotype score → 50",),
+}
+
+FAIRNESS_BENCHMARK_DESCRIPTIONS = {
+    "StereoSet-UK Eval": """
+    **LMS ↑** measures preference for related completions. **SS → 50** measures stereotype preference, with 50 as the neutral point. **ICAT ↑** combines language-model quality and stereotype neutrality.
+    """,
+    "WinoBias-UK Natural": """
+    **Worst-group accuracy ↑** is the lower of pro- and anti-stereotypical primary accuracy. **Pro/anti gap → 0** measures the absolute difference between them. Agreement and cross controls measure whether the model follows Ukrainian grammatical gender cues.
+    """,
+}
+
+FAIRNESS_BENCHMARK_RELEASE_NOTES = {
+    "StereoSet-UK Eval": "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset.",
+    "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row validation Type 1 release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
 }
 
 
@@ -193,16 +210,15 @@ def render_fairness_tab() -> None:
                 benchmark = benchmarks.get(benchmark_name)
                 metrics = FAIRNESS_BENCHMARK_METRICS.get(benchmark_name, ())
                 with gr.Tab(benchmark_name):
-                    if benchmark_name == "StereoSet-UK Eval":
-                        gr.Markdown(
-                            """
-                        **LMS ↑** measures preference for related completions. **SS → 50** measures stereotype preference, with 50 as the neutral point. **ICAT ↑** combines language-model quality and stereotype neutrality.
-                        """
+                    description = FAIRNESS_BENCHMARK_DESCRIPTIONS.get(benchmark_name)
+                    if description:
+                        gr.Markdown(description)
+                    if benchmark is not None:
+                        release_note = FAIRNESS_BENCHMARK_RELEASE_NOTES.get(
+                            benchmark_name
                         )
-                        if benchmark is not None:
-                            gr.Markdown(
-                                "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset."
-                            )
+                        if release_note:
+                            gr.Markdown(release_note)
                     if benchmark is None:
                         gr.Markdown("Results pending. Planned metrics appear below.")
                         gr.Dataframe(

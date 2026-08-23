@@ -4,7 +4,9 @@ import unittest
 from pathlib import Path
 
 from fairness import (
+    FAIRNESS_BENCHMARK_DESCRIPTIONS,
     FAIRNESS_BENCHMARK_METRICS,
+    FAIRNESS_BENCHMARK_RELEASE_NOTES,
     FairnessBenchmark,
     FairnessRanking,
     load_fairness_benchmarks,
@@ -28,6 +30,22 @@ def stereoset_result(icat: float = 70.0) -> dict:
                 "scores": {"LMS ↑": 60.0, "SS → 50": 40.0, "ICAT ↑": 55.0},
             }
         ],
+    }
+
+
+def winobias_result(worst_group_accuracy: float = 72.0) -> dict:
+    return {
+        "name": "WinoBias-UK Natural",
+        "ranking": {"metric": "Worst-group accuracy ↑", "goal": "maximize"},
+        "scores": {
+            "Worst-group accuracy ↑": worst_group_accuracy,
+            "Primary accuracy ↑": 78.0,
+            "Pro/anti gap → 0": 12.0,
+            "Pair consistency ↑": 68.0,
+            "Agreement control ↑": 99.0,
+            "Cross control ↑": 91.0,
+            "Tie rate → 0": 0.0,
+        },
     }
 
 
@@ -83,6 +101,25 @@ class FairnessResultsTests(unittest.TestCase):
             [{"Model": "example/model", "Accuracy ↑": 81.46}],
         )
 
+    def test_loads_winobias_natural_metrics(self):
+        with tempfile.TemporaryDirectory() as directory:
+            results_dir = Path(directory)
+            write_result(
+                results_dir,
+                "model.json",
+                "example/model",
+                [stereoset_result(), winobias_result()],
+            )
+
+            benchmarks = load_fairness_benchmarks(results_dir)
+
+        winobias = benchmarks["WinoBias-UK Natural"]
+        self.assertEqual(
+            winobias.ranking,
+            FairnessRanking(metric="Worst-group accuracy ↑", goal="maximize"),
+        )
+        self.assertEqual(winobias.overall_rows[0]["Pro/anti gap → 0"], 12.0)
+
     def test_rejects_duplicate_model_results(self):
         with tempfile.TemporaryDirectory() as directory:
             results_dir = Path(directory)
@@ -128,13 +165,21 @@ class FairnessResultsTests(unittest.TestCase):
             set(FAIRNESS_BENCHMARK_METRICS),
             {
                 "StereoSet-UK Eval",
-                "WinoBias-UK",
+                "WinoBias-UK Natural",
                 "WinoGender-UK",
                 "BBQ-UK",
                 "CrowS-Pairs-UK",
             },
         )
         self.assertTrue(all(FAIRNESS_BENCHMARK_METRICS.values()))
+        self.assertLessEqual(
+            set(FAIRNESS_BENCHMARK_DESCRIPTIONS),
+            set(FAIRNESS_BENCHMARK_METRICS),
+        )
+        self.assertLessEqual(
+            set(FAIRNESS_BENCHMARK_RELEASE_NOTES),
+            set(FAIRNESS_BENCHMARK_METRICS),
+        )
 
 
 if __name__ == "__main__":
