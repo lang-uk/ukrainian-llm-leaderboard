@@ -19,9 +19,13 @@ FAIRNESS_BENCHMARK_METRICS = {
         "Cross control ↑",
         "Tie rate → 0",
     ),
-    "WinoGender-UK": (
-        "Accuracy ↑",
+    "WinoPron-UK": (
+        "Double accuracy ↑",
+        "Single accuracy ↑",
         "Gender accuracy gap → 0",
+        "Gender-form consistency ↑",
+        "Option-order consistency ↑",
+        "Tie rate → 0",
     ),
     "BBQ-UK": (
         "Ambiguous accuracy ↑",
@@ -29,21 +33,42 @@ FAIRNESS_BENCHMARK_METRICS = {
         "Ambiguous bias → 0",
         "Disambiguated bias → 0",
     ),
-    "CrowS-Pairs-UK": ("Stereotype score → 50",),
 }
 
 FAIRNESS_BENCHMARK_DESCRIPTIONS = {
     "StereoSet-UK Eval": """
-    **LMS ↑** measures preference for related completions. **SS → 50** measures stereotype preference, with 50 as the neutral point. **ICAT ↑** combines language-model quality and stereotype neutrality.
+    - **LMS ↑:** related completions should score above unrelated ones; higher is better.
+    - **SS → 50:** 50 is neutral. Above 50 indicates stereotypical preference, while below 50 indicates anti-stereotypical preference; a larger distance from 50 means stronger skew.
+    - **ICAT ↑:** combines LMS with stereotype neutrality; higher is better, while a low score reflects weak language modelling, stronger skew, or both.
     """,
     "WinoBias-UK Natural": """
-    **Worst-group accuracy ↑** is the lower of pro- and anti-stereotypical primary accuracy. **Pro/anti gap → 0** measures the absolute difference between them. Agreement and cross controls measure whether the model follows Ukrainian grammatical gender cues.
+    - **Worst-group accuracy ↑:** lower of pro- and anti-stereotypical accuracy; higher means the model performs well on both groups.
+    - **Primary accuracy ↑:** mean pro/anti coreference accuracy; higher is better.
+    - **Pro/anti gap → 0:** absolute accuracy difference; lower means more balanced behaviour.
+    - **Pair consistency ↑:** share of matched pro/anti pairs answered correctly in both forms; higher is better.
+    - **Agreement control ↑ / Cross control ↑:** accuracy when Ukrainian grammatical gender identifies either referent; higher means the model follows the grammatical cue more reliably.
+    - **Tie rate → 0:** share of equal-scoring choices; lower is better.
+    """,
+    "WinoPron-UK": """
+    - **Double accuracy ↑:** coreference accuracy when an occupation and another participant are present; higher is better.
+    - **Single accuracy ↑:** accuracy on matched single-referent controls; higher is better.
+    - **Gender accuracy gap → 0:** absolute female/male accuracy difference; lower means more balanced performance.
+    - **Gender-form consistency ↑:** share of matched gender forms resolved consistently; higher is better.
+    - **Option-order consistency ↑:** share unchanged when answer order is reversed; higher is better.
+    - **Tie rate → 0:** share of equal-scoring choices; lower is better.
+    """,
+    "BBQ-UK": """
+    - **Ambiguous accuracy ↑:** correct selection of the unknown answer when context is insufficient; higher is better.
+    - **Disambiguated accuracy ↑:** correct use of explicit contextual evidence; higher is better.
+    - **Ambiguous bias → 0 / Disambiguated bias → 0:** mean absolute bias across categories; lower means weaker group preference, while higher means stronger skew. Accuracy should be considered alongside both bias scores.
     """,
 }
 
 FAIRNESS_BENCHMARK_RELEASE_NOTES = {
     "StereoSet-UK Eval": "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset.",
     "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row validation Type 1 release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
+    "WinoPron-UK": "[WinoPron-UK](https://huggingface.co/datasets/FairForget/WinoPron-UK) covers all 180 complementary source pairs. Leaderboard results are pending publication.",
+    "BBQ-UK": "[BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK) contains 29,246 ambiguous/disambiguated context pairs and 58,492 task rows. Leaderboard results are pending publication.",
 }
 
 
@@ -202,7 +227,11 @@ def render_fairness_tab() -> None:
             """
         ## Ukrainian Fairness Leaderboard
 
-        Each benchmark has its own table. Metric arrows show whether higher values, zero, or 50 are preferred.
+        This section measures social bias expressed through model preferences, coreference decisions, and question answering. It does not evaluate whether a model can detect biased text or provide a general ethical-alignment score; [UAlign](https://aclanthology.org/2025.unlp-1.4/) covers the broader Ukrainian alignment setting.
+
+        Each benchmark has its own table. Metric arrows show whether higher values, zero, or 50 are preferred. Rankings use the benchmark's primary metric, while the remaining metrics provide necessary context.
+
+        The public results contain aggregate metrics and available bias-type summaries. Per-item model predictions and likelihood traces are not currently published. Results from provisional or preliminary dataset releases should be interpreted accordingly.
         """
         )
         with gr.Tabs():
@@ -213,12 +242,9 @@ def render_fairness_tab() -> None:
                     description = FAIRNESS_BENCHMARK_DESCRIPTIONS.get(benchmark_name)
                     if description:
                         gr.Markdown(description)
-                    if benchmark is not None:
-                        release_note = FAIRNESS_BENCHMARK_RELEASE_NOTES.get(
-                            benchmark_name
-                        )
-                        if release_note:
-                            gr.Markdown(release_note)
+                    release_note = FAIRNESS_BENCHMARK_RELEASE_NOTES.get(benchmark_name)
+                    if release_note:
+                        gr.Markdown(release_note)
                     if benchmark is None:
                         gr.Markdown("Results pending. Planned metrics appear below.")
                         gr.Dataframe(

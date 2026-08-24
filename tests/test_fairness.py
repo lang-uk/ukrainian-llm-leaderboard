@@ -166,20 +166,23 @@ class FairnessResultsTests(unittest.TestCase):
             {
                 "StereoSet-UK Eval",
                 "WinoBias-UK Natural",
-                "WinoGender-UK",
+                "WinoPron-UK",
                 "BBQ-UK",
-                "CrowS-Pairs-UK",
             },
         )
         self.assertTrue(all(FAIRNESS_BENCHMARK_METRICS.values()))
-        self.assertLessEqual(
+        self.assertEqual(
             set(FAIRNESS_BENCHMARK_DESCRIPTIONS),
             set(FAIRNESS_BENCHMARK_METRICS),
         )
-        self.assertLessEqual(
+        self.assertEqual(
             set(FAIRNESS_BENCHMARK_RELEASE_NOTES),
             set(FAIRNESS_BENCHMARK_METRICS),
         )
+        for benchmark_name, metrics in FAIRNESS_BENCHMARK_METRICS.items():
+            description = FAIRNESS_BENCHMARK_DESCRIPTIONS[benchmark_name]
+            for metric in metrics:
+                self.assertIn(metric, description)
 
 
 if __name__ == "__main__":
