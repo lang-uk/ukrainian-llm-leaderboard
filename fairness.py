@@ -66,7 +66,7 @@ FAIRNESS_BENCHMARK_DESCRIPTIONS = {
 
 FAIRNESS_BENCHMARK_RELEASE_NOTES = {
     "StereoSet-UK Eval": "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset.",
-    "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row validation Type 1 release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
+    "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
     "WinoPron-UK": "[WinoPron-UK](https://huggingface.co/datasets/FairForget/WinoPron-UK) covers all 180 complementary source pairs. Leaderboard results are pending publication.",
     "BBQ-UK": "[BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK) contains 29,246 ambiguous/disambiguated context pairs and 58,492 task rows. Leaderboard results are pending publication.",
 }
@@ -231,7 +231,7 @@ def render_fairness_tab() -> None:
 
         Each benchmark has its own table. Metric arrows show whether higher values, zero, or 50 are preferred. Rankings use the benchmark's primary metric, while the remaining metrics provide necessary context.
 
-        The public results contain aggregate metrics and available bias-type summaries. Per-item model predictions and likelihood traces are not currently published. Results from provisional or preliminary dataset releases should be interpreted accordingly.
+        Results from provisional or preliminary dataset releases should be interpreted accordingly.
         """
         )
         with gr.Tabs():

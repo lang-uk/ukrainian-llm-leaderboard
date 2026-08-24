@@ -50,8 +50,7 @@ If you want to leave a feedback or suggest a new feature, please open an issue o
 - **FLORES benchmarks**: Only English↔Ukrainian (en-uk, uk-en) translation pairs are displayed
 - **MMLU**: Only the aggregate score is shown (no subcategories)
 - **Fairness scope**: These benchmarks measure social bias expressed through model preferences, coreference decisions, and question answering. They do not evaluate whether a model can detect biased text or provide a general ethical-alignment score. [UAlign](https://aclanthology.org/2025.unlp-1.4/) covers the broader Ukrainian alignment setting.
-- **Fairness data**: Public results contain aggregate per-model metrics and available bias-type summaries. Per-item model predictions and likelihood traces are not currently published.
-- **Fairness status**: StereoSet-UK Eval uses a provisional 949-item subset, and WinoBias-UK Natural uses a preliminary 279-item, 1,674-row validation Type 1 release. WinoPron-UK and BBQ-UK results are pending publication.
+- **Fairness status**: StereoSet-UK Eval uses a provisional 949-item subset, and WinoBias-UK Natural uses a preliminary 279-item, 1,674-row release. WinoPron-UK and BBQ-UK results are pending publication.
 
 ### How to Use
 
