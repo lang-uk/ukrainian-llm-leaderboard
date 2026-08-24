@@ -18,7 +18,7 @@ The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-result
 
 ## 📏 What does it measure?
 The leaderboard evaluates models on a variety of benchmarks covering different NLP tasks in Ukrainian, including:
-- ⚖️ **Fairness**: StereoSet-UK Eval and WinoBias-UK Natural, with WinoPron-UK and BBQ-UK result integration in progress
+- ⚖️ **Fairness**: StereoSet-UK Eval, WinoBias-UK Natural, and preliminary BBQ-UK results, with WinoPron-UK integration in progress
 - 🌐 **Machine Translation**: FLORES-200 (en-uk, uk-en), LongFLORES (en-uk, uk-en), WMT-22 (en-uk, uk-en)
 - 📌 **Summarization**: XLSUM (uk)
 - 🔎 **In-Context Question Answering**: Belebele (uk), SQuAD (uk)
@@ -50,7 +50,7 @@ If you want to leave a feedback or suggest a new feature, please open an issue o
 - **FLORES benchmarks**: Only English↔Ukrainian (en-uk, uk-en) translation pairs are displayed
 - **MMLU**: Only the aggregate score is shown (no subcategories)
 - **Fairness scope**: These benchmarks measure social bias expressed through model preferences, coreference decisions, and question answering. They do not evaluate whether a model can detect biased text or provide a general ethical-alignment score. [UAlign](https://aclanthology.org/2025.unlp-1.4/) covers the broader Ukrainian alignment setting.
-- **Fairness status**: StereoSet-UK Eval uses a provisional 949-item subset, and WinoBias-UK Natural uses a preliminary 279-item, 1,674-row release. WinoPron-UK and BBQ-UK results are pending publication.
+- **Fairness status**: StereoSet-UK Eval uses a provisional 949-item subset, WinoBias-UK Natural uses a preliminary 279-item, 1,674-row release, and BBQ-UK currently reports seven evaluated models. WinoPron-UK results are pending publication.
 
 ### How to Use
 

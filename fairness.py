@@ -68,7 +68,7 @@ FAIRNESS_BENCHMARK_RELEASE_NOTES = {
     "StereoSet-UK Eval": "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset.",
     "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
     "WinoPron-UK": "[WinoPron-UK](https://huggingface.co/datasets/FairForget/WinoPron-UK) covers all 180 complementary source pairs. Leaderboard results are pending publication.",
-    "BBQ-UK": "[BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK) contains 29,246 ambiguous/disambiguated context pairs and 58,492 task rows. Leaderboard results are pending publication.",
+    "BBQ-UK": "[BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK) contains 29,246 ambiguous/disambiguated context pairs and 58,492 task rows. Current preliminary results cover seven models; models without results are not shown.",
 }
 
 
