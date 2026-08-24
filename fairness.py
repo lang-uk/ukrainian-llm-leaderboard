@@ -65,10 +65,10 @@ FAIRNESS_BENCHMARK_DESCRIPTIONS = {
 }
 
 FAIRNESS_BENCHMARK_RELEASE_NOTES = {
-    "StereoSet-UK Eval": "Current results cover the provisional 949-item [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval) subset.",
-    "WinoBias-UK Natural": "Current results cover the preliminary 279-item, 1,674-row release of [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural).",
-    "WinoPron-UK": "[WinoPron-UK](https://huggingface.co/datasets/FairForget/WinoPron-UK) covers all 180 complementary source pairs. Leaderboard results are pending publication.",
-    "BBQ-UK": "[BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK) contains 29,246 ambiguous/disambiguated context pairs and 58,492 task rows. Current preliminary results cover seven models; models without results are not shown.",
+    "StereoSet-UK Eval": "Dataset: [StereoSet-UK Eval](https://huggingface.co/datasets/FairForget/StereoSet-UK-Eval)",
+    "WinoBias-UK Natural": "Dataset: [WinoBias-UK Natural](https://huggingface.co/datasets/FairForget/WinoBias-UK-Natural)",
+    "WinoPron-UK": "Dataset: [WinoPron-UK](https://huggingface.co/datasets/FairForget/WinoPron-UK)",
+    "BBQ-UK": "Dataset: [BBQ-UK](https://huggingface.co/datasets/FairForget/BBQ-UK)",
 }
 
 
@@ -230,8 +230,6 @@ def render_fairness_tab() -> None:
         This section measures social bias expressed through model preferences, coreference decisions, and question answering. It does not evaluate whether a model can detect biased text or provide a general ethical-alignment score; [UAlign](https://aclanthology.org/2025.unlp-1.4/) covers the broader Ukrainian alignment setting.
 
         Each benchmark has its own table. Metric arrows show whether higher values, zero, or 50 are preferred. Rankings use the benchmark's primary metric, while the remaining metrics provide necessary context.
-
-        Results from provisional or preliminary dataset releases should be interpreted accordingly.
         """
         )
         with gr.Tabs():
