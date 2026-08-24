@@ -18,7 +18,7 @@ The data comes from evaluation results [lang-uk/ukrainian-llm-leaderboard-result
 
 ## 📏 What does it measure?
 The leaderboard evaluates models on a variety of benchmarks covering different NLP tasks in Ukrainian, including:
-- ⚖️ **Fairness**: StereoSet-UK Eval, with WinoBias, WinoGender, BBQ, and CrowS-Pairs planned
+- ⚖️ **Fairness**: StereoSet-UK Eval, WinoBias-UK Natural, BBQ-UK, and WinoPron-UK
 - 🌐 **Machine Translation**: FLORES-200 (en-uk, uk-en), LongFLORES (en-uk, uk-en), WMT-22 (en-uk, uk-en)
 - 📌 **Summarization**: XLSUM (uk)
 - 🔎 **In-Context Question Answering**: Belebele (uk), SQuAD (uk)
@@ -49,11 +49,12 @@ If you want to leave a feedback or suggest a new feature, please open an issue o
 
 - **FLORES benchmarks**: Only English↔Ukrainian (en-uk, uk-en) translation pairs are displayed
 - **MMLU**: Only the aggregate score is shown (no subcategories)
+- **Fairness scope**: These benchmarks measure social bias expressed through model preferences, coreference decisions, and question answering. They do not evaluate whether a model can detect biased text or provide a general ethical-alignment score. [UAlign](https://aclanthology.org/2025.unlp-1.4/) covers the broader Ukrainian alignment setting.
 
 ### How to Use
 
 - **Main Leaderboard**: View performance on core benchmarks
-- **Fairness**: View bias and fairness metrics. Current StereoSet-UK Eval results cover a provisional 949-item subset.
+- **Fairness**: Compare social-bias metrics by benchmark and, where available, by bias type. Each tab explains whether higher, lower, zero, or 50 is preferred for every displayed metric.
 - **Detailed Benchmarks**: Explore performance on specific benchmark categories
 - **Model Comparison**: Compare multiple models with radar charts
 - **Visualizations**: Generate bar charts for specific metrics

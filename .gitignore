@@ -1,3 +1,4 @@
 .gradio
+__pycache__/
 
 eval-results
