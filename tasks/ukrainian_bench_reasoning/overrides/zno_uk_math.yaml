@@ -1,0 +1,18 @@
+include: ../../ukrainian_bench/zno_uk/zno_uk_math.yaml
+task: zno_uk_math
+task_alias: zno_uk_math
+doc_to_text: "Питання: {{question.strip()}}\n{% for answer in answers %}{{ 'ABCDE'[loop.index0] }}. {{answer}}\n{% endfor %}Виведи лише одну латинську літеру правильної відповіді: A, B, C, D або E. Без пояснень.\nВідповідь:"
+filter_list:
+  - name: strict_letter
+    filter:
+      - function: regex
+        regex_pattern: '^\s*([ABCDE])\s*$'
+        group_select: 0
+        fallback: "[invalid]"
+      - function: take_first
+generation_kwargs:
+  max_gen_toks: 65536
+  until:
+    - "==sdfAcxbvgg/=/=/="
+  do_sample: false
+  temperature: 0.0

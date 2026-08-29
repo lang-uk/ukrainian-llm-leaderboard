@@ -1,0 +1,17 @@
+include: ../../ukrainian_bench/arc-challenge_uk/arc_challenge_uk.yaml
+task: arc_challenge_uk
+task_alias: arc_challenge_uk
+doc_to_text: 'Маючи наступне запитання та чотири варіанти відповіді (A, B, C and D), оберіть найкращу відповідь.\nПитання: {{question.strip()}}\nA. {{choices.text[0]}}\nB. {{choices.text[1]}}\nC. {{choices.text[2]}}{% if choices.text|length > 3 %}\nD. {{choices.text[3]}}{% endif %}\nВиведи лише фінальну відповідь у форматі "Найкраща відповідь — X", де X — це одна з A, B, C або D.'
+gen_prefix: 'Найкраща відповідь — '
+generation_kwargs:
+  max_gen_toks: 16384
+  until:
+    - "==sdfAcxbvgg/=/=/="
+filter_list:
+  - name: extract_answer
+    filter:
+      - function: regex
+        group_select: -1
+        regex_pattern: '(?is)(?:Найкраща\s+відповідь\s*[—:-]\s*([ABCD]))|(?:^\s*([ABCD])\b)'
+        fallback: "[invalid]"
+      - function: take_first

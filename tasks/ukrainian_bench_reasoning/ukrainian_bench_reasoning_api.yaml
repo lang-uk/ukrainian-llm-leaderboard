@@ -1,0 +1,19 @@
+group: ukrainian_bench_reasoning_api
+group_alias: ukrainian_bench_reasoning_api
+task:
+  - triviaqa_uk
+  - arc_challenge_uk
+  - gsm8k_uk
+  - ifeval_uk
+  - wmt_en_uk
+  - flores_en-uk
+  - flores_uk-en
+  - long_flores_en-uk
+  - long_flores_uk-en
+  - xlsum_uk
+  - zno_uk_geography
+  - zno_uk_history
+  - zno_uk_language_and_literature
+  - zno_uk_math
+metadata:
+  version: 1.0

@@ -1,0 +1,13 @@
+task: squad_uk_cot_likelihood
+class: !function squad_uk_cot.SQuAD2CotLikelihood
+dataset_path: parquet
+dataset_kwargs:
+  data_files:
+    validation: cot_traces/squad_uk/squad_uk_cot.parquet
+output_type: loglikelihood
+validation_split: validation
+test_split: validation
+metadata:
+  version: 0.1
+  reasoning_mode: cot_conditioned_likelihood
+  stage2_trace_max_chars: 30000

@@ -1,0 +1,10 @@
+include: ../../ukrainian_bench/gsm8k_uk/gsm8k_uk.yaml
+task: gsm8k_uk
+task_alias: gsm8k_uk
+doc_to_text: "Питання: {{question}}\nРозв'яжи задачу покроково. Останній рядок виведи рівно у форматі: The answer is N. Не пропускай фінальну крапку.\nВідповідь:"
+generation_kwargs:
+  max_gen_toks: 65536
+  until:
+    - "==sdfAcxbvgg/=/=/="
+  do_sample: false
+  temperature: 0.0
